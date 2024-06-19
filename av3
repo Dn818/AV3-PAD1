@@ -1,0 +1,41 @@
+var copia = document.importNode(template.content,true)
+const registropokemon = document.getElementById('registrar');
+const template = document.getElementById('modelo').content;
+
+registropokemon.addEventListener('click', () => {
+  const nomeInput = document.getElementById('nome');
+  const tipoInput = document.getElementById('tipo');
+  const nivelInput = document.getElementById('nivel');
+  const descricaoInput = document.getElementById('descricao');
+  const imagemInput = document.getElementById('imagem');
+
+  const pokemonData = {
+    nome: nomeInput.value,
+    tipo: tipoInput.value,
+    nivel: nivelInput.value,
+    descricao: descricaoInput.value,
+    imagem: imagemInput.value
+  };
+
+  const clone = document.importNode(template, true); 
+
+ 
+  clone.querySelector('.nome').innerHTML = pokemonData.nome;
+  clone.querySelector('.tipo').innerHTML = pokemonData.tipo;
+  clone.querySelector('.nivel').innerHTML = pokemonData.nivel;
+  clone.querySelector('.descricao').innerHTML = pokemonData.descricao;
+
+
+  const imagemElement = clone.querySelector('.imagem');
+  if (pokemonData.imagem) {
+    imagemElement.src = pokemonData.imagem;
+    imagemElement.alt = pokemonData.nome; 
+  } else {
+   
+    imagemElement.style.display = 'none';
+  }
+
+ 
+  const container = document.getElementById('container-pokemon');
+  container.appendChild(clone);
+})
